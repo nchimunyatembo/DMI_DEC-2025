@@ -1,0 +1,43 @@
+{
+  "version": 2,
+  "buildCommand": "npm install",
+  "public": true,
+  "env": [
+    "DB_HOST",
+    "DB_USER",
+    "DB_PASSWORD",
+    "DB_NAME",
+    "DB_PORT"
+  ],
+  "routes": [
+    {
+      "src": "/api/auth/(.*)",
+      "dest": "/api/auth/$1"
+    },
+    {
+      "src": "/",
+      "dest": "/index.html"
+    },
+    {
+      "src": "/login",
+      "dest": "/login.html"
+    },
+    {
+      "src": "/register",
+      "dest": "/register.html"
+    },
+    {
+      "src": "/Leave",
+      "dest": "/leave.html"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/$1"
+    }
+  ],
+  "functions": {
+    "api/auth/index.js": {
+      "runtime": "nodejs18.x"
+    }
+  }
+}

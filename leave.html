@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leave Application</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #f4f7fb; /* light background color */
+        }
+
+        .container {
+            background: #ffffff;
+            padding: 24px 28px;
+            border-radius: 8px;
+            box-shadow: 0 6px 18px rgba(20,30,50,0.08);
+            max-width: 640px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 0;
+            margin-bottom: 18px;
+            font-size: 1.5rem;
+            color: #102a43;
+        }
+
+        .form-group {
+            margin-bottom: 12px;
+        }
+
+        label {
+            display: block;
+            font-size: 0.95rem;
+            margin-bottom: 6px;
+            color: #243b53;
+        }
+
+        input[type="text"], input[type="date"], select, textarea {
+            width: 100%;
+            padding: 8px 10px;
+            border: 1px solid #d9e2ec;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 0.95rem;
+        }
+
+        button {
+            padding: 8px 14px;
+            border-radius: 4px;
+            border: none;
+            cursor: pointer;
+            font-size: 0.95rem;
+        }
+
+        button[type="submit"] {
+            background-color: #2b8aef;
+            color: #fff;
+            margin-left: 8px;
+        }
+
+        button[type="button"] {
+            background-color: #e6eef8;
+            color: #1f3a58;
+        }
+
+        .actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 8px;
+            margin-top: 12px;
+        }
+
+        .register-link {
+            text-align: center;
+            margin-top: 12px;
+            font-size: 0.95rem;
+        }
+
+        .register-link a {
+            color: #2b8aef;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Leave Application Form</h1>
+        <div style="text-align:right; margin-bottom:12px;"><button type="button" onclick="logout()" style="background-color:#d9534f; padding:6px 10px; font-size:0.9rem;">Logout</button></div>
+        <form id="leaveForm">
+        <div class="form-group">
+            <label for="leaveType">Type of Leave:</label>
+            <select id="leaveType" name="leaveType" required>
+                <option value="">Select Leave Type</option>
+                <option value="Local">Local</option>
+                <option value="Vacation">Vacation</option>
+                <option value="Urgent">Urgent</option>
+                <option value="Special">Special</option>
+                <option value="Maternity">Maternity</option>
+                <option value="Paternity">Paternity</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="firstName">First Name:</label>
+            <input type="text" id="firstName" name="firstName" required>
+        </div>
+        <div class="form-group">
+            <label for="surname">Surname:</label>
+            <input type="text" id="surname" name="surname" required>
+        </div>
+        <div class="form-group">
+            <label for="facility">Facility:</label>
+            <input type="text" id="facility" name="facility" required>
+        </div>
+        <div class="form-group">
+            <label for="position">Position:</label>
+            <input type="text" id="position" name="position" required>
+        </div>
+        <div class="form-group">
+            <label for="startDate">Start Date:</label>
+            <input type="date" id="startDate" name="startDate" required>
+        </div>
+        <div class="form-group">
+            <label for="department">Department:</label>
+            <input type="text" id="department" name="department" required>
+        </div>
+        <div class="form-group">
+            <label for="resumeDate">Resume Date:</label>
+            <input type="date" id="resumeDate" name="resumeDate" required>
+        </div>
+        <div class="form-group">
+            <label for="reason">Reason for Leave:</label>
+            <textarea id="reason" name="reason" rows="4" required></textarea>
+        </div>
+            <div class="actions">
+                <button type="button" onclick="viewDetails()">View Details</button>
+                <button type="submit">Submit</button>
+            </div>
+        </form>
+
+        <p class="register-link">Not registered? <a href="/register">Register here</a></p>
+    </div>
+    <script>
+        // Check if user is logged in
+        function checkAuth() {
+            const user = localStorage.getItem('user');
+            if (!user) {
+                alert('Please login first to access leave application.');
+                window.location.href = '/login';
+            }
+        }
+
+        // Run auth check on page load
+        checkAuth();
+
+        function viewDetails() {
+            const form = document.getElementById('leaveForm');
+            const details = `
+                Leave Type: ${form.leaveType.value}
+                First Name: ${form.firstName.value}
+                Surname: ${form.surname.value}
+                Facility: ${form.facility.value}
+                Position: ${form.position.value}
+                Start Date: ${form.startDate.value}
+                Department: ${form.department.value}
+                Resume Date: ${form.resumeDate.value}
+                Reason: ${form.reason.value}
+            `;
+            alert(details);
+        }
+
+        function logout() {
+            localStorage.removeItem('user');
+            alert('Logged out successfully');
+            window.location.href = '/';
+        }
+    </script>
+</body>
+</html>
