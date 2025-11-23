@@ -1,6 +1,5 @@
 {
   "version": 2,
-  "buildCommand": "npm install",
   "public": true,
   "env": {},
   "routes": [
@@ -28,10 +27,5 @@
       "src": "/(.*)",
       "dest": "/$1"
     }
-  ],
-  "functions": {
-    "api/auth/index.js": {
-      "runtime": "nodejs22.x"
-    }
-  }
+  ]
 }
