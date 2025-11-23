@@ -8,7 +8,11 @@
     "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": ["leave", "management", "petauke"],
+  "keywords": [
+    "leave",
+    "management",
+    "petauke"
+  ],
   "author": "",
   "license": "ISC",
   "description": "petauke Leave Management System",
@@ -22,6 +26,9 @@
     "nodemon": "^3.1.11"
   },
   "engines": {
-    "node": "18.x"
+    "node": "22.x"
+  },
+  "devDependencies": {
+    "vercel": "^48.10.10"
   }
 }
