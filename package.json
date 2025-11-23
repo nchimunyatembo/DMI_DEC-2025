@@ -2,7 +2,6 @@
   "name": "petauke-leave-system",
   "version": "1.0.0",
   "main": "index.js",
-  "type": "module",
   "scripts": {
     "dev": "node index.js",
     "start": "node index.js",

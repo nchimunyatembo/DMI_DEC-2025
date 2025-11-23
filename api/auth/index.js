@@ -1,28 +1,28 @@
-#!/usr/bin/env node
-
 /**
  * Vercel Serverless Function Handler
  * Handles API routes for authentication
+ * CommonJS format for Vercel compatibility
  */
-import mysql from 'mysql2';
-import bcrypt from 'bcryptjs';
-import dotenv from 'dotenv';
+const mysql = require('mysql2');
+const bcrypt = require('bcryptjs');
+require('dotenv').config();
 
-dotenv.config();
-
-// Create database connection
-const pool = mysql.createConnection({
+// Create database connection pool
+const pool = mysql.createPool({
     host: process.env.DB_HOST,
     user: process.env.DB_USER,
     password: process.env.DB_PASSWORD,
     database: process.env.DB_NAME,
-    port: process.env.DB_PORT || 3306
+    port: process.env.DB_PORT || 3306,
+    waitForConnections: true,
+    connectionLimit: 10,
+    queueLimit: 0
 });
 
 const db = pool.promise();
 
 // User registration function
-export const registerUser = async (req, res) => {
+const registerUser = async (req, res) => {
     const { name, email, password } = req.body;
     try {
         // Check if user exists
@@ -49,7 +49,7 @@ export const registerUser = async (req, res) => {
 };
 
 // User login function
-export const loginUser = async (req, res) => {
+const loginUser = async (req, res) => {
     const { email, password } = req.body;
     try {
         // Check if user exists
@@ -77,8 +77,8 @@ export const loginUser = async (req, res) => {
     }
 };
 
-// Simple router for the serverless function
-export default async function handler(req, res) {
+// Main handler function for Vercel
+module.exports = async (req, res) => {
     try {
         const url = req.url || '';
         const method = req.method || 'GET';
@@ -99,4 +99,4 @@ export default async function handler(req, res) {
         console.log('Handler error:', err);
         res.status(500).json({ message: 'Server error', error: err.message });
     }
-}
+};
