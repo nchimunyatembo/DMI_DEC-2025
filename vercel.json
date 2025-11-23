@@ -2,13 +2,7 @@
   "version": 2,
   "buildCommand": "npm install",
   "public": true,
-  "env": [
-    "DB_HOST",
-    "DB_USER",
-    "DB_PASSWORD",
-    "DB_NAME",
-    "DB_PORT"
-  ],
+  "env": {},
   "routes": [
     {
       "src": "/api/auth/(.*)",
@@ -37,7 +31,7 @@
   ],
   "functions": {
     "api/auth/index.js": {
-      "runtime": "nodejs18.x"
+      "runtime": "nodejs22.x"
     }
   }
 }
